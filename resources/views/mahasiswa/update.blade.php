@@ -1,0 +1,8 @@
+@extends('mahasiswa.insert')
+@section('title', "Edit mahasiswa - $m[nrp]")
+@section('content-header',"Edit Mahasiswa")
+@section('content-header',"Edit Mahasiswa")
+@section('nrpval', $m["nrp"])
+@section('nrpdisabled', "disabled='disabled'")
+@section('namaval', $m["nama"])
+@section('emailval', $m["email"])

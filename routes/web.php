@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function(){
+    return redirect("/mahasiswa");
 });
+
+Route::prefix('/mahasiswa')->group(function () {
+    Route::get('/', "MahasiswaController@list");
+    Route::get('/insert', "MahasiswaController@add");
+    Route::get('/update/{nrp?}', "MahasiswaController@edit");
+});
+
+Route::get('/dosen', "DosenController@list");
