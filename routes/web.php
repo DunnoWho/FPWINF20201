@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/register', "UserController@registerPage");
+Route::post('/do-register', "UserController@doRegister");
