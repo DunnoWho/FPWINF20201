@@ -43,21 +43,75 @@
                 @csrf
                 <!-- sea surf -->
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Full name" name="nama">
+                <input type="text" class="form-control" placeholder="Username" name="username" value="{{old('username')}}">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
+                @error('username')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Email" name="email">
+                    <input type="text" class="form-control" placeholder="Email" name="email" value="{{old('email')}}">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
+                @error('email')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="text" class="form-control" placeholder="Password" name="password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
+                @error('password')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Retype password" name="confirm">
+                    <input type="text" class="form-control" placeholder="Retype password" name="password_confirmation">
                     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                 </div>
+                @error('password_confirm')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Full Name" name="fullname">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                @error('fullname')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Gender" name="gender">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                @error('gender')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Birth Date" name="birthdate">
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                </div>
+                @error('birthdate')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Graduation Date" name="graduationdate">
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                </div>
+                @error('graduationdate')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="URL Website pribadi" name="website">
+                    <span class="glyphicon glyphicon-certificate form-control-feedback"></span>
+                </div>
+                @error('website')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="nomor ktp" name="nomorktp">
+                    <span class="glyphicon glyphicon-apple form-control-feedback"></span>
+                </div>
+                @error('nomorktp')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
@@ -72,9 +126,16 @@
                     </div>
                     <!-- /.col -->
                 </div>
+                @error('agree')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </form>
 
-            <a href="login.html" class="text-center">I already have a membership</a>
+            {{-- @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">{{ $error }}</div>
+            @endforeach
+            @endif --}}
         </div>
         <!-- /.form-box -->
     </div>
