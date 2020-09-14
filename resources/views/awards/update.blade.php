@@ -1,0 +1,7 @@
+@extends('awards.insert')
+@section('title', "Update Awards - $x->name")
+@section('box-title', "Update Awards")
+@section('form-action', "/awards/update/".$x->id)
+@section("nameval", $x->name)
+@section("iconval", $x->icon)
+@section("colorval", $x->color)

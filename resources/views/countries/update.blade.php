@@ -1,0 +1,6 @@
+@extends('countries.insert')
+@section('title', "Update Account - $x->name")
+@section('box-title', "Update Account")
+@section('form-action', "/countries/update/".$x->id)
+@section("nameval", $x->name)
+@section("codeval", $x->code)
