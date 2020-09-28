@@ -53,4 +53,24 @@ class MainController extends Controller
             "accounts" => $accounts,
         ));
     }
+
+    public function loginPage()
+    {
+        return view("main.login");
+    }
+
+    public function doLogin(Request $request)
+    {
+        //dd($request->all());
+        session([
+            "email" => $request->input("email")
+        ]);
+        session()->flash("welcome", true);
+        return redirect("/");
+    }
+
+    public function logout(){
+        session()->forget("email");
+        return redirect("/login");
+    }
 }

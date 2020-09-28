@@ -14,8 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    session()->reflash();
     return redirect("/basic");
 });
+
+Route::get('/login', "MainController@loginPage");
+Route::post('/do-login', "MainController@doLogin");
+Route::get('/logout', "MainController@logout");
 
 Route::get('/dd', "MainController@dd");
 Route::get('/basic', "MainController@basic");

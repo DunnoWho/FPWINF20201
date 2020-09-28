@@ -67,6 +67,16 @@
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>{{ session("email") }}</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="@yield('sidebar-menu-basic-active')">
@@ -87,6 +97,11 @@
                     <li class="@yield('sidebar-menu-awards-active')">
                         <a href="{{url("/awards")}}">
                             <i class="fa fa-certificate"></i> <span>Awards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url("/logout")}}">
+                            <i class="fa fa-power-off"></i> <span>Logout</span>
                         </a>
                     </li>
                 </ul>
@@ -128,13 +143,17 @@
 
     <script src="{{ url("/adminlte/bower_components/select2/dist/js/select2.min.js") }}"></script>
     <!-- bootstrap color picker -->
-    <script src="{{ url("/adminlte/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js") }} "></script>
+    <script src="{{ url("/adminlte/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js") }} ">
+    </script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ url("/adminlte/dist/js/demo.js") }}"></script>
     <script>
         $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
+            $('.sidebar-menu').tree()
+            @if (session("welcome"))
+            alert("Selamat datang {{ session("email") }}!");
+            @endif
+        });
     </script>
 </body>
 
