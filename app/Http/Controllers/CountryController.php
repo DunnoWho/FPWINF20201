@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\Country;
+
 class CountryController extends Controller
 {
     /**
@@ -16,7 +18,10 @@ class CountryController extends Controller
     {
         //silakan coba supaya bisa disearch
         //searchnya pakai $request->input("name") dan $request->input("code")
-        $countries = DB::select("select * from countries");
+
+        //$countries = DB::select("select * from countries");
+
+        $countries = Country::all();
         return view("countries.list", array(
             "countries" => $countries
         ));
@@ -40,10 +45,29 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        DB::insert(
-            'insert into countries (id, name, code) values (?, ?, ?)',
-            [0, $request->input("name"), $request->input("code")]
-        );
+        // DB::insert(
+        //     'insert into countries (id, name, code) values (?, ?, ?)',
+        //     [0, $request->input("name"), $request->input("code")]
+        // );
+
+        //cara 1
+        Country::create(array(
+            "name" => $request->input("name"),
+            "code" => $request->input("code")
+        ));
+
+        // //cara 2
+        // Country::create($request->all());
+
+        // //cara 3
+        // //country = new Country();
+        // $country = new Country;
+        // //country.name = "nama"
+        // $country->name = $request->input("name");
+        // //country.code = "kode"
+        // $country->code = $request->input("code");
+        // $country->save();
+
         return redirect("/countries");
     }
 
@@ -55,7 +79,8 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        $country = DB::select("select * from countries where id = ?", [$id])[0];
+        //$country = DB::select("select * from countries where id = ?", [$id])[0];
+        $country = Country::find($id);
         return view("countries.update", array(
             "x" => $country
         ));
@@ -70,10 +95,27 @@ class CountryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        DB::update(
-            'update countries set name = ?, code = ? where id = ?',
-            [$request->input("name"), $request->input("code"), $id]
-        );
+        // DB::update(
+        //     'update countries set name = ?, code = ? where id = ?',
+        //     [$request->input("name"), $request->input("code"), $id]
+        // );
+
+        //cara 1
+        Country::find($id)->update(array(
+            "name" => $request->input("name"),
+            "code" => $request->input("code"),
+        ));
+        // find($id) = where("id", "=", $id)
+
+        // //cara 3
+        // //country = Country.find($id);
+        // $country = Country::find($id);
+        // //country.name = "nama"
+        // $country->name = $request->input("name");
+        // //country.code = "kode"
+        // $country->code = $request->input("code");
+        // $country->save();
+
         return redirect("/countries");
     }
 
@@ -85,7 +127,14 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        DB::delete("delete from countries where id = $id");
+        //DB::delete("delete from countries where id = $id");
+
+        //cara 1
+        Country::destroy($id);
+
+        // //cara 2
+        // Country::find($id)->delete();
+
         return redirect("/countries");
     }
 }
