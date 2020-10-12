@@ -1,0 +1,5 @@
+@extends('main.user')
+@section('title', "Admin Page")
+@section('sidebar-menu-admin-active', "active")
+@section('sidebar-menu-user-active', "")
+@section('pagename', "Admin")

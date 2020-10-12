@@ -43,6 +43,12 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        "myMiddleWare" => [
+            \App\Http\Middleware\IsLoggedInMiddleware::class,
+            \App\Http\Middleware\RateLimitMiddleware::class,
+            \App\Http\Middleware\LoggingMiddleware::class,
+        ]
     ];
 
     /**
@@ -63,5 +69,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        "isLoggedIn" => \App\Http\Middleware\IsLoggedInMiddleware::class,
+        "a" => \App\Http\Middleware\IsNotLoggedInMiddleware::class,
     ];
 }
