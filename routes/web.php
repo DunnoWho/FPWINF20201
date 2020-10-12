@@ -14,3 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/dd', "MainController@index");
+Route::get("a/{a}", function ($a = null) {
+    return "HAI " . $a;
+});
+Route::get("coba", "MainController@coba");

@@ -7,6 +7,15 @@ use App\MahasiswaModel;
 
 class MainController extends Controller
 {
+    public function coba(Request $request)
+    {
+        dd(
+            array(
+                "a" => $request->input([])
+            )
+        );
+    }
+
     public function index(){
         $no10 = array();
         MahasiswaModel::find(218117000)->kelas()->attach([7, 10], ["nilai" => 0]);
@@ -27,6 +36,7 @@ class MainController extends Controller
                 "judul TA" => MahasiswaModel::find(218117000)->judulTa->judul,
                 "nama dosen pembimbing TA" => MahasiswaModel::find(218117000)->judulTa->dosenPembimbing->nama,
                 "nama dosen pembimbing TA (cara 2)" => MahasiswaModel::find(218117000)->doping->nama,
+                "nama dosen pembimbing TA (cara 3)" => MahasiswaModel::find(218117000)->doping->where("nama","like","%%")->get()
             ),
             "no 10" => $no10
         ));
