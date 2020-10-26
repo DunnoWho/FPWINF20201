@@ -41,6 +41,11 @@ return [
             'provider' => 'users',
         ],
 
+        "FAI" => [
+            "driver" => "session",
+            "provider" => "account"
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -70,6 +75,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+        "account" => [
+            'driver' => 'eloquent',
+            'model' => App\Account::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
