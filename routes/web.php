@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "MainController@index");
+Route::get('/add', "MainController@add");
+Route::post('/do-add', "MainController@doAdd");
+Route::get("/email","MainController@previewEmail");
+Route::get("/download/{id}","MainController@download");
