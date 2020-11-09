@@ -1,5 +1,7 @@
 <?php
 
+use App\Account;
+use App\Notifications\LinkVisited;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/{pesan}', function ($pesan) {
+    $account = Account::find(1);
+    $account->notify(new LinkVisited($pesan));
+    foreach ($account->notifications as $i) {
+        echo "<h1>".$i->data['judul']."</h1>";
+        echo "<p>".$i->data['isi']."</p>";
+    }
+    //return view('welcome');
 });
